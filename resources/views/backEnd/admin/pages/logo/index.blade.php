@@ -7,12 +7,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Manage User</h1>
+            <h1 class="m-0">Manage logo</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">User</li>
+              <li class="breadcrumb-item active">logo</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -36,43 +36,44 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                 <h2 class="card-title">Manage User</h2>
-                 <a href="{{ Route('user.create') }}" class="float-sm-right"><i class="fa fa-plus-circle"></i>
-                 Add user</a>
+                 <h2 class="card-title">Manage logo</h2>
+                 <a href="{{ Route('logo.create') }}" class="float-sm-right"><i class="fa fa-plus-circle"></i>
+                 Add logo</a>
               </div>
               <div class="card-body">
                 <table class="table">
                   <thead>
                     <tr>
                       <th>Sl</th>
-                      <th>Name</th>
-                      <th>Email</th>
+                      <th>Title</th>
                       <th>Image</th>
-                      <th>User Type</th>
                       <th>Status</th>
+                      <th>User Name</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach($users as $key=>$user)
+                    @foreach($logos as $key=>$logo)
                     <tr>
                       <td>{{ $key+1 }}</td>
-                      <td>{{ $user->name }}</td>
-                      <td>{{ $user->email }}</td>
+                      <td>{{ $logo->title }}</td>
                       <td>
-                        <img src="" alt="">
+                        <img src="{{ Storage::url($logo->image)}}" alt="" width="100px">
                       </td>
+                    
                       <td>
-                        {{ $user->user_type }}
-                      </td>
-                      <td>
-                        @if($user->status == 1)
-                           <a href="{{asset('/user/statusChange')}}/{{$user->id}}/{{$user->status}}" class="btn btn-success">active</a>
+                        @if($logo->status == 1)
+                           <a href="{{asset('/logo/statusChange')}}/{{$logo->id}}/{{$logo->status}}" class="btn btn-success">Published</a>
                         @else
-                           <a href="{{asset('/user/statusChange')}}/{{$user->id}}/{{$user->status}}" class="btn btn-danger">deactive </a>
+                           <a href="{{asset('/logo/statusChange')}}/{{$logo->id}}/{{$logo->status}}" class="btn btn-danger">UnPublished</a>
                         @endif
                       </td>
-                      <td></td>
+                      <td>
+                        {{ $logo->user->name }}
+                      </td>
+                      <td>
+                        
+                      </td>
                     </tr>
                     @endforeach
                   </tbody>

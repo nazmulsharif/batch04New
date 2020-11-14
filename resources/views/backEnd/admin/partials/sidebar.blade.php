@@ -51,16 +51,37 @@
                   <p>Manage User</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="{{ Route('user.create') }}" class="nav-link{{ Route::is('user.create')? 'active':''}}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add User</p>
-                </a>
-              </li>
+             
             </ul>
           </li>
           @endif
-          
+
+          <li class="nav-item {{Route::is('logo.manage')||Route::is('logo.create')? 'menu-open': ''}}">
+            <a href="#" class="nav-link bg-info">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Logo Management
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ Route('logo.manage') }}" class="nav-link {{ Route::is('logo.manage')?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage logo</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ Route('logo.create') }}" class="nav-link {{ Route::is('logo.create')?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add New Logo</p>
+                </a>
+              </li>
+             
+            </ul>
+          </li>
+        
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

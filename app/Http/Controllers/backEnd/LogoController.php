@@ -4,9 +4,11 @@ namespace App\Http\Controllers\backEnd;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Logo;
 use Auth;
-class AdminController extends Controller
+use DB;
+
+class LogoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +17,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->user_type == 'super_admin'){
-            $users = User::where('user_type','admin')->get();
-            return view('backEnd.user.index')->with('users',$users);
-        }
-        else{
-            return back();
-        }
-
+        $logos = Logo::all();
+       return view('backEnd.admin.pages.logo.index', compact('logos'));
     }
 
     /**
@@ -32,7 +28,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('backEnd.user.create');
+        return view('backEnd.admin.pages.logo.create');
     }
 
     /**
@@ -43,7 +39,18 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'=>'nullable',
+            'image'=>'required|image'
+
+        ]);
+        $logo = new Logo();
+        $logo->title = $request->title;
+        $image = $request->image->store('public/logo/images');
+        $logo->image = $image;
+        $logo->user_id = Auth::user()->id;
+        $logo->save();
+        return back()->with('message','New Logo is created successfully');
     }
 
     /**
@@ -91,14 +98,18 @@ class AdminController extends Controller
         //
     }
     public function statusChange($id,$status){
-       $user = User::find($id);
+       DB::table('logos')->update([
+        'status' => 0
+
+       ]);
+       $logo = Logo::find($id);
        if($status == 1){
-        $user->status =0;
+        $logo->status =0;
        }
        else{
-        $user->status =1 ;
+        $logo->status =1 ;
        }
-       $user->save();
-       return back()->with('message','user status is updated succesfully');
+       $logo->save();
+       return back()->with('message','logo status is updated succesfully');
     }
 }

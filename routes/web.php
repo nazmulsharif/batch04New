@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\frontEnd\PagesController;
 use App\Http\Controllers\backEnd\AdminController;
+use App\Http\Controllers\backEnd\LogoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,13 +39,28 @@ use App\Http\Controllers\backEnd\AdminController;
 		Route::get('edit/{id}',[AdminController::class,'edit'])->name('user.edit');
 		Route::post('update/{id}',[AdminController::class,'update'])->name('user.update');
 		Route::get('delete/{id}',[AdminController::class,'destroy'])->name('user.delete');
+		Route::get('statusChange/{id}/{status}',[AdminController::class,'statusChange'])->name('user.status.change');
 	});
-
-
-
-
-
 /*---------user Routes End--------------------------------------*/
+
+/*---------logo Routes Start --------------------------------------*/
+	Route::prefix('logo')->group(function(){
+		Route::get('manage',[LogoController::class,'index'])->name('logo.manage');
+		Route::get('create',[LogoController::class,'create'])->name('logo.create');
+		Route::post('store',[LogoController::class,'store'])->name('logo.store');
+		Route::get('edit/{id}',[LogoController::class,'edit'])->name('logo.edit');
+		Route::post('update/{id}',[LogoController::class,'update'])->name('logo.update');
+		Route::get('delete/{id}',[LogoController::class,'destroy'])->name('logo.delete');
+		Route::get('statusChange/{id}/{status}',[LogoController::class,'statusChange'])->name('logo.status.change');
+	});
+/*---------logo Routes End--------------------------------------*/
+
+
+
+
+
+
+
 
 
   /*---BackEnd Routes End ------------ --------------------*/
