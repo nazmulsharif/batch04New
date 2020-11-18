@@ -51,7 +51,7 @@
                   <p>Manage User</p>
                 </a>
               </li>
-             
+
             </ul>
           </li>
           @endif
@@ -77,10 +77,57 @@
                   <p>Add New Logo</p>
                 </a>
               </li>
-             
+
             </ul>
           </li>
-        
+            <li class="nav-item {{Route::is('slider.manage')||Route::is('slider.create')? 'menu-open': ''}}">
+                <a href="#" class="nav-link bg-info">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Slider Management
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ Route('slider.manage') }}" class="nav-link {{ Route::is('slider.manage')?'active':''}}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Manage Slider</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ Route('slider.create') }}" class="nav-link {{ Route::is('slider.create')?'active':''}}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Add New Slider</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="nav-item {{Route::is('aboutSection.manage')||Route::is('aboutSection.create')? 'menu-open': ''}}">
+                <a href="#" class="nav-link bg-info">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        AboutSection Manage
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ Route('aboutSection.manage') }}" class="nav-link {{ Route::is('aboutSection.manage')?'active':''}}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Manage AboutSection</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ Route('aboutSection.create') }}" class="nav-link {{ Route::is('aboutSection.create')?'active':''}}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Add New AboutSection</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
 
         </ul>
       </nav>

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\frontEnd\PagesController;
 use App\Http\Controllers\backEnd\AdminController;
 use App\Http\Controllers\backEnd\LogoController;
+use App\Http\Controllers\backEnd\SliderController;
+use App\Http\Controllers\backEnd\HomeAboutSectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +17,11 @@ use App\Http\Controllers\backEnd\LogoController;
 | contains the "web" middleware group. Now create something great!
 |
 */
- 
+
  /*---FrontEnd Routes Start ------------ --------------------*/
  Route::get('/',[PagesController::class,'index'])->name('frontEnd.home');
 
- Route::prefix('frontEnd')->group(function(){	
+ Route::prefix('frontEnd')->group(function(){
 	 Route::get('about-us',[PagesController::class,'about'])->name('frontEnd.about_us');
 	 Route::get('services',[PagesController::class,'services'])->name('frontEnd.services');
 	 Route::get('blog',[PagesController::class,'blog'])->name('frontEnd.blog');
@@ -55,9 +57,30 @@ use App\Http\Controllers\backEnd\LogoController;
 	});
 /*---------logo Routes End--------------------------------------*/
 
+/*---------Slider Routes Start --------------------------------------*/
+Route::prefix('slider')->group(function(){
+    Route::get('manage',[SliderController::class,'index'])->name('slider.manage');
+    Route::get('create',[SliderController::class,'create'])->name('slider.create');
+    Route::post('store',[SliderController::class,'store'])->name('slider.store');
+    Route::get('edit/{id}',[SliderController::class,'edit'])->name('slider.edit');
+    Route::post('update/{id}',[SliderController::class,'update'])->name('slider.update');
+    Route::get('delete/{id}',[SliderController::class,'destroy'])->name('slider.delete');
+    Route::get('statusChange/{id}/{status}',[SliderController::class,'statusChange'])->name('slider.status.change');
+});
+/*---------slider Routes End--------------------------------------*/
 
 
-
+/*---------Slider Routes Start --------------------------------------*/
+Route::prefix('aboutSection')->group(function(){
+    Route::get('manage',[HomeAboutSectionController::class,'index'])->name('aboutSection.manage');
+    Route::get('create',[HomeAboutSectionController::class,'create'])->name('aboutSection.create');
+    Route::post('store',[HomeAboutSectionController::class,'store'])->name('aboutSection.store');
+    Route::get('edit/{id}',[HomeAboutSectionController::class,'edit'])->name('aboutSection.edit');
+    Route::post('update/{id}',[HomeAboutSectionController::class,'update'])->name('aboutSection.update');
+    Route::get('delete/{id}',[HomeAboutSectionController::class,'destroy'])->name('aboutSection.delete');
+    Route::get('statusChange/{id}/{status}',[HomeAboutSectionController::class,'statusChange'])->name('aboutSection.status.change');
+});
+/*---------slider Routes End--------------------------------------*/
 
 
 

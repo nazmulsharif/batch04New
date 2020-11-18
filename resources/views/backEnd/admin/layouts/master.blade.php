@@ -33,9 +33,9 @@
   @include('backEnd.admin.partials.sidebar')
   @yield('content')
 
- 
 
- 
+
+
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.
@@ -86,5 +86,6 @@
 <script src="{{ asset('/') }}backEnd/admin/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('/') }}backEnd/admin/dist/js/pages/dashboard.js"></script>
+@yield('scripts')
 </body>
 </html>
